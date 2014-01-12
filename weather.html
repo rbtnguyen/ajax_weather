@@ -1,0 +1,98 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Weather</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <!-- // <script type="text/javascript" src="jquery-1.10.2.js"></script> -->
+    <style type="text/css">
+    body{
+    	font-family: sans-serif;
+    }
+    select{
+    	width: 200px;
+    	font-size: 18px;
+    	border: 1px solid gray;
+    	margin-right: 14px;
+    }
+    #submit{
+    	width: 150px;
+    	font-size: 20px;
+
+    }
+    .container{
+    	width: 960px;
+    	margin: 0 auto;
+    }
+    </style>
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+    	$('form').submit(function(){
+
+
+    		$.get($(this).attr('action')+"?callback=?", $(this).serialize(), function(weath){
+
+    			var pre = weath.data.current_condition[0];
+    			var tempf = pre.temp_F;
+    			var tempc = pre.temp_C;
+    			var wind = pre.windspeedMiles;
+    			var condition = pre.weatherDesc[0].value;
+    			var locale = weath.data.request[0].query;
+                var locale2 =$('#city').find(':selected').text();
+    			$('#results').html("<p><u>Weather for " + locale2 + ":</u></p><p>Current temp F: " + tempf + "&deg</p><p>Current temp C: " + tempc + "&deg</p><p>Current Windspeed: " + wind + " MPH</p><p>Weather Description: " + condition + "</p>");
+    		}, "json");
+    		return false;
+    	});
+
+    })
+
+    </script>
+
+</head>
+
+<body>
+	<div class="container">
+		<h2>The Weather Report (courtesy of World Weather Online)</h2>
+		<form action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
+			<select name="q" id="city">
+				
+				<option value="Austin">Austin, TX</option>
+                <option value="Charlotte">Charlotte, NC</option>
+				<option value="Chicago">Chicago, IL</option>
+                <option value="Colombus">Colombus, OH</option>
+                <option value="Dallas">Dallas, TX</option>
+                <option value="Detroit">Detroit, MI</option>
+                <option value="El Paso">El Paso, TX</option>
+                <option value="Fort Worth">Fort Worth, TX</option>
+                <option value="Houston">Houston, TX</option>
+                <option value="Indianapolis">Indianapolis, IN</option>
+                <option value="Jacksonville">Jacksonville, FL</option>
+                <option value="Memphis">Memphis, TN</option>
+                <option value="New York">New York, NY</option>
+                <option value="Philadelphia">Philadelphia, PA</option>
+                <option value="Phoenix">Phoenix, AZ</option>
+                <option value="Philadelphia">Philadelphia, PA</option>
+                <option value="San Antonio">San Antonio, TX</option>
+                <option value="San Diego">San Diego, CA</option>
+                <option value="San Francisco">San Francisco, CA</option>
+                <option value="San Jose">San Jose, CA</option>
+                <option value="Washington D.C.">Washington, D.C.</option>
+                <option value=""></option>
+			</select>
+			<input type="hidden" name="key" value="jtpc4myth9fwxjgwz9fh5fw5">
+			<input type="hidden" name="format" value="json">
+			<input id="submit" type="submit" value="GET SOME WEATHER!">
+
+
+		</form>
+		<div id="results">
+		</div>
+	</div>
+
+
+
+</body>
+
+
+
+</html>
