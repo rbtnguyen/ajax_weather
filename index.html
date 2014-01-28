@@ -23,16 +23,19 @@
     	width: 960px;
     	margin: 0 auto;
     }
+
+    .search{
+        width: 150px; 
+    }
     </style>
     <script type="text/javascript">
 
     $(document).ready(function(){
-    	$('form').submit(function(){
-
-
+    	$('#form1').submit(function(){
     		$.get($(this).attr('action')+"?callback=?", $(this).serialize(), function(weath){
 
-    			var pre = weath.data.current_condition[0];
+    			console.log(weath);
+                var pre = weath.data.current_condition[0];
     			var tempf = pre.temp_F;
     			var tempc = pre.temp_C;
     			var wind = pre.windspeedMiles;
@@ -44,6 +47,30 @@
     		return false;
     	});
 
+        // $('.search').click(function(){
+        //     $('select').hide();
+        //     $('#submit').before("<input type='text' name='q' id='city'>")
+        // });
+
+        $('#form2').submit(function(){
+
+
+            $.get($(this).attr('action')+"?callback=?", $(this).serialize(), function(weath){
+
+                console.log(weath);
+                var pre = weath.data.current_condition[0];
+                var tempf = pre.temp_F;
+                var tempc = pre.temp_C;
+                var wind = pre.windspeedMiles;
+                var condition = pre.weatherDesc[0].value;
+                var locale = weath.data.request[0].query;
+                $('#results').html("<p><u>Weather for " + locale + ":</u></p><p>Current temp F: " + tempf + "&deg</p><p>Current temp C: " + tempc + "&deg</p><p>Current Windspeed: " + wind + " MPH</p><p>Weather Description: " + condition + "</p>");
+            }, "json");
+            return false;
+        });
+
+
+
     })
 
     </script>
@@ -53,7 +80,7 @@
 <body>
 	<div class="container">
 		<h2>The Weather Report (courtesy of World Weather Online)</h2>
-		<form action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
+		<form id='form1' action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
 			<select name="q" id="city">
 				
 				<option value="Austin">Austin, TX</option>
@@ -77,14 +104,19 @@
                 <option value="San Francisco">San Francisco, CA</option>
                 <option value="San Jose">San Jose, CA</option>
                 <option value="Washington D.C.">Washington, D.C.</option>
-                <option value=""></option>
+                <option value="22030">22030</option>
 			</select>
 			<input type="hidden" name="key" value="jtpc4myth9fwxjgwz9fh5fw5">
 			<input type="hidden" name="format" value="json">
-			<input id="submit" type="submit" value="GET SOME WEATHER!">
-
+			<input id="submit" type="submit" value="Choose Location">
 
 		</form>
+        <form id='form2' action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
+            <input type="text" size="35" name="q" id="city">
+            <input type="hidden" name="key" value="jtpc4myth9fwxjgwz9fh5fw5">
+            <input type="hidden" name="format" value="json">
+            <input type="submit" value="Search by Zipcode">
+        </form>
 		<div id="results">
 		</div>
 	</div>
