@@ -1,0 +1,84 @@
+body {
+	font-family: sans-serif;
+    background-image: url('http://bglabs.evade.netdna-cdn.com/files/clouds-seamless-background-824.jpg');
+}
+
+select{
+	width: 200px;
+	font-size: 18px;
+	border: 1px solid gray;
+	margin-right: 14px;
+}
+
+h2 {
+    padding-top: 20px;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 5px 0 5px 275px;
+    padding: 0px;
+}
+
+form {
+    margin-bottom: 0;
+}
+
+
+#submit{
+	width: 150px;
+	font-size: 20px;
+
+}
+
+.s_input{
+    /*padding: 0;*/
+}
+
+.wwo{
+    font-size: 12px;
+}
+
+.container{
+	width: 960px;
+	margin: 0 auto;
+}
+
+#search{
+    font-size: 16px;
+    width: 150px;
+    margin-left: 12px;
+}
+
+#results{
+    margin-top: 20px;
+    padding: 20px 0px 20px 20px;
+    width: 320px;
+    float: left;
+    font-size: 18px;
+}
+
+#pic {
+    float: left;
+    margin-top: 20px;
+    padding: 74px 30px 75px 0;
+
+
+}
+
+#pic img {
+    height: 100px;
+    border: 2px solid white;
+}
+
+.bcolor {
+    background-color: tomato;
+    color: white;
+}
+
+
+
+
+

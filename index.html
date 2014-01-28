@@ -4,30 +4,8 @@
     <title>Weather</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <!-- // <script type="text/javascript" src="jquery-1.10.2.js"></script> -->
-    <style type="text/css">
-    body{
-    	font-family: sans-serif;
-    }
-    select{
-    	width: 200px;
-    	font-size: 18px;
-    	border: 1px solid gray;
-    	margin-right: 14px;
-    }
-    #submit{
-    	width: 150px;
-    	font-size: 20px;
-
-    }
-    .container{
-    	width: 960px;
-    	margin: 0 auto;
-    }
-
-    .search{
-        width: 150px; 
-    }
-    </style>
+    <link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="style.css">
     <script type="text/javascript">
 
     $(document).ready(function(){
@@ -42,15 +20,15 @@
     			var condition = pre.weatherDesc[0].value;
     			var locale = weath.data.request[0].query;
                 var locale2 =$('#city').find(':selected').text();
+                //Retrieving picture
+                var pic = pre.weatherIconUrl[0].value;
+                console.log(pic);
     			$('#results').html("<p><u>Weather for " + locale2 + ":</u></p><p>Current temp F: " + tempf + "&deg</p><p>Current temp C: " + tempc + "&deg</p><p>Current Windspeed: " + wind + " MPH</p><p>Weather Description: " + condition + "</p>");
+                $('#pic').html("<img alt='" + condition + "' src='" + pic + "'>");
+                $('#results, #pic').addClass('bcolor');
     		}, "json");
     		return false;
     	});
-
-        // $('.search').click(function(){
-        //     $('select').hide();
-        //     $('#submit').before("<input type='text' name='q' id='city'>")
-        // });
 
         $('#form2').submit(function(){
 
@@ -64,11 +42,18 @@
                 var wind = pre.windspeedMiles;
                 var condition = pre.weatherDesc[0].value;
                 var locale = weath.data.request[0].query;
+
+                //Retrieving picture
+                var pic = pre.weatherIconUrl[0].value;
+                console.log(pic);
+
                 $('#results').html("<p><u>Weather for " + locale + ":</u></p><p>Current temp F: " + tempf + "&deg</p><p>Current temp C: " + tempc + "&deg</p><p>Current Windspeed: " + wind + " MPH</p><p>Weather Description: " + condition + "</p>");
+                $('#pic').html("<img alt='" + condition + "' src='" + pic + "'>");
+                $('#results, #pic').addClass('bcolor');
+
             }, "json");
             return false;
         });
-
 
 
     })
@@ -79,10 +64,9 @@
 
 <body>
 	<div class="container">
-		<h2>The Weather Report (courtesy of World Weather Online)</h2>
+		<h2>The US Weather Report <span class="wwo">(courtesy of World Weather Online)</span></h2>
 		<form id='form1' action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
 			<select name="q" id="city">
-				
 				<option value="Austin">Austin, TX</option>
                 <option value="Charlotte">Charlotte, NC</option>
 				<option value="Chicago">Chicago, IL</option>
@@ -104,21 +88,22 @@
                 <option value="San Francisco">San Francisco, CA</option>
                 <option value="San Jose">San Jose, CA</option>
                 <option value="Washington D.C.">Washington, D.C.</option>
-                <option value="22030">22030</option>
 			</select>
 			<input type="hidden" name="key" value="jtpc4myth9fwxjgwz9fh5fw5">
 			<input type="hidden" name="format" value="json">
 			<input id="submit" type="submit" value="Choose Location">
-
+        <h3>OR</h3>
 		</form>
         <form id='form2' action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
-            <input type="text" size="35" name="q" id="city">
+            <input class='s_input' type="text" size="35" name="q" id="city">
             <input type="hidden" name="key" value="jtpc4myth9fwxjgwz9fh5fw5">
             <input type="hidden" name="format" value="json">
-            <input type="submit" value="Search by Zipcode">
+            <input id="search" type="submit" value="Search by Zipcode">
         </form>
 		<div id="results">
 		</div>
+        <div id="pic">
+        </div>
 	</div>
 
 
