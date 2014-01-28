@@ -1,6 +1,6 @@
-ajax_weather
+simple_weather
 ============
 
-AJAX - Weather Example
+Simple Weather
 
-Basic Weather app using API request and AJAX in order to prevent page refresh. Demo can be found here: http://rbtnguyen.github.io/ajax_weather
+Basic Weather app using API request from World Weather Online and AJAX in order to prevent page refresh. Demo can be found here: http://rbtnguyen.github.io/simple_weather
