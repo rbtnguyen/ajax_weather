@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <title>Weather</title>
+    <title>Simple Weather</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <!-- // <script type="text/javascript" src="jquery-1.10.2.js"></script> -->
     <link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
@@ -41,7 +41,22 @@
                 var tempc = pre.temp_C;
                 var wind = pre.windspeedMiles;
                 var condition = pre.weatherDesc[0].value;
-                var locale = weath.data.request[0].query;
+                var string = weath.data.request[0].query;
+                var us_city = string.split(", ")[0];
+                var country = string.split(", ")[1];
+                var type = weath.data.request[0].type;
+                console.log(country);
+                console.log(us_city);
+
+                if (country === "United States Of America") {
+                    var locale = us_city;
+                    console.log(true);
+                } else {
+                    var locale = weath.data.request[0].query;
+                    console.log(false);
+                }
+                console.log(locale);
+
 
                 //Retrieving picture
                 var pic = pre.weatherIconUrl[0].value;
@@ -64,7 +79,7 @@
 
 <body>
 	<div class="container">
-		<h2>The US Weather Report <span class="wwo">(courtesy of World Weather Online)</span></h2>
+		<h2>Simple Weather<span class="wwo"> (courtesy of World Weather Online)</span></h2>
 		<form id='form1' action="http://api.worldweatheronline.com/free/v1/weather.ashx" method="get">
 			<select name="q" id="city">
 				<option value="Austin">Austin, TX</option>
@@ -98,7 +113,7 @@
             <input class='s_input' type="text" size="35" name="q" id="city">
             <input type="hidden" name="key" value="jtpc4myth9fwxjgwz9fh5fw5">
             <input type="hidden" name="format" value="json">
-            <input id="search" type="submit" value="Search by Zipcode">
+            <input id="search" type="submit" value="Search">
         </form>
 		<div id="results">
 		</div>

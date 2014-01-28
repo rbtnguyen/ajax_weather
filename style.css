@@ -13,7 +13,7 @@ select{
 h2 {
     padding-top: 20px;
     font-family: 'Hammersmith One', sans-serif;
-    font-size: 24px;
+    font-size: 32px;
 }
 
 h3 {
@@ -55,17 +55,19 @@ form {
 #results{
     margin-top: 20px;
     padding: 20px 0px 20px 20px;
-    width: 320px;
+    width: 335px;
     float: left;
     font-size: 18px;
+    border-top-left-radius: 1%;
+    border-bottom-left-radius: 1%;
 }
 
 #pic {
     float: left;
     margin-top: 20px;
     padding: 74px 30px 75px 0;
-
-
+    border-top-right-radius: 1%;
+    border-bottom-right-radius: 1%;
 }
 
 #pic img {
